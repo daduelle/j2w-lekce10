@@ -23,6 +23,7 @@ public class DetailTridyController {
     public ModelAndView detailTridy(@PathVariable String nazev, @PageableDefault(sort = {"prijmeni", "jmeno"}) Pageable pageble) {
         return new ModelAndView("detailTridy")
                 .addObject("trida", skolaService.jednaTrida(nazev))
-                .addObject("student",skolaService.vyhledejStudentyTridy(nazev, pageble));
+                .addObject("student",skolaService.vyhledejStudentyTridy(nazev, pageble))
+                .addObject("ucitel",skolaService.ucitelTridy(nazev));
     }
 }

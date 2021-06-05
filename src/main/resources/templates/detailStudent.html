@@ -2,40 +2,46 @@
 <html lang="cs" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Detail studenta</title>
 </head>
 <body>
-<div>
-    <div th:each="vybranyStudent: ${vybranyStudent}">
-        <h1>Detail studenta:</h1>
-        <h2 th:utext="${vybranyStudent.jmeno} + ' ' + ${vybranyStudent.prijmeni} ">student</h2>
-        <span>Třída: </span><a th:utext="${vybranyStudent.trida}"
-                               th:href="@{/trida/{nazev}(nazev=${vybranyStudent.trida})}"> Autor: </a>
-    </div>
-    <div>
-        <span>Rodiče:</span>
-        <table>
-            <thead>
-            <tr>
-                <th>Příjmení</th>
-                <th>Jméno</th>
-                <th>Email</th>
-                <th>Telefon</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="rodic: ${rodic}">
-                <td th:text="${rodic.prijmeni}"></td>
-                <td th:text="${rodic.jmeno}"></td>
-                <td th:text="${rodic.email}"></td>
-                <td th:text="${rodic.telefon}"></td>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <a th:href="@{/}" class="button">Zpět na seznam tříd</a>
+<div class="container">
+    <div class="table-responsive-sm">
+        <div th:each="vybranyStudent: ${vybranyStudent}">
+            <h1>Detail studenta:</h1>
+            <h2 th:utext="${vybranyStudent.jmeno} + ' ' + ${vybranyStudent.prijmeni} ">student</h2>
+            <h3>Třída:
+                <a th:utext="${vybranyStudent.trida}"
+                   th:href="@{/trida/{nazev}(nazev=${vybranyStudent.trida})}"> Autor: </a>
+            </h3>
+        </div>
+        <div>
+            <Strong>Rodiče:</Strong>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Příjmení</th>
+                    <th scope="col">Jméno</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefon</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="rodic: ${rodic}">
+                    <td th:text="${rodic.prijmeni}"></td>
+                    <td th:text="${rodic.jmeno}"></td>
+                    <td th:text="${rodic.email}"></td>
+                    <td th:text="${rodic.telefon}"></td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a th:href="@{/}" class="button">Zpět na seznam tříd</a>
+        </div>
     </div>
 </div>
 </body>

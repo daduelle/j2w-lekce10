@@ -23,5 +23,6 @@ public class DetailStudentController {
         return new ModelAndView("detailStudent")
                 .addObject("vybranyStudent", skolaService.jedenStudent(id).get())
                 .addObject("rodic", skolaService.rodiceStudenta(id));
+
     }
 }

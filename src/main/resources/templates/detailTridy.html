@@ -2,37 +2,43 @@
 <html lang="cs" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Detail třídy</title>
 </head>
 <body>
-<div>
-    <h1>Detail třídy:</h1>
-    <h2 th:utext="${trida.nazev}">1.A</h2>
-    <div th:each="trida, iterStat : ${trida}"></div>
-    <span>Třídní učitel: </span><span th:utext="${trida.tridniUcitel}">Autor: </span>
-    <div>
-        <span>Seznam žáků:</span>
-        <table class="u-full-width">
-            <thead>
-            <tr>
-                <th>Příjmení</th>
-                <th>Jméno</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="student: ${student}">
-                <td>
-                    <a th:text="${student.prijmeni}"
-                       th:href="@{/student/{id}(id=${student.id})}">Jan</td>
-                <td>
-                    <a th:text="${student.jmeno}"
-                       th:href="@{/student/{id}(id=${student.id})}">Hus </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="table-responsive-sm">
+        <h1>Detail třídy:</h1>
+        <h2 th:utext="${trida.nazev}">1.A</h2>
+        <div th:each="ucitel: ${ucitel}"></div>
+                <h3> Třídní učitel: <span th:utext="${ucitel.jmeno} + ' ' + ${ucitel.prijmeni}"> učitel </span>
+        </h3>
+        <div>
+            <strong>Seznam žáků:</strong>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Příjmení</th>
+                    <th scope="col">Jméno</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student: ${student}">
+                    <td>
+                        <a th:text="${student.prijmeni}"
+                           th:href="@{/student/{id}(id=${student.id})}">Jan </a>
+                    </td>
+                    <td>
+                        <a th:text="${student.jmeno}"
+                           th:href="@{/student/{id}(id=${student.id})}">Hus </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <div><a th:href="@{/}" class="button">Zpět na seznam tříd</a></div>
 </div>
-<div><a th:href="@{/}" class="button">Zpět na seznam tříd</a></div>
 </body>
 </html>
