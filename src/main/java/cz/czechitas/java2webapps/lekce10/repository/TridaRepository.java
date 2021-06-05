@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TridaRepository  extends JpaRepository<Trida, Short> {
+
+    Trida findByNazev(String nazev);
 }

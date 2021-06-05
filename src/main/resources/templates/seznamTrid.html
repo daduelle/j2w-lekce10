@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam tříd</title>
+</head>
+<body>
+<main>
+    <h1>Seznam tříd</h1>
+    <table>
+        <tr th:each="trida: ${trida}">
+            <td>
+            <a th:text="${trida.nazev}"
+               th:href="@{/trida/{nazev}(nazev=${trida.nazev})}">1.A> </a>
+            </td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>

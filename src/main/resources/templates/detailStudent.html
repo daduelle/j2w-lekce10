@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail studenta</title>
+</head>
+<body>
+<div>
+    <div th:each="vybranyStudent: ${vybranyStudent}">
+        <h1>Detail studenta:</h1>
+        <h2 th:utext="${vybranyStudent.jmeno} + ' ' + ${vybranyStudent.prijmeni} ">student</h2>
+        <span>Třída: </span><a th:utext="${vybranyStudent.trida}"
+                               th:href="@{/trida/{nazev}(nazev=${vybranyStudent.trida})}"> Autor: </a>
+    </div>
+    <div>
+        <span>Rodiče:</span>
+        <table>
+            <thead>
+            <tr>
+                <th>Příjmení</th>
+                <th>Jméno</th>
+                <th>Email</th>
+                <th>Telefon</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rodic: ${rodic}">
+                <td th:text="${rodic.prijmeni}"></td>
+                <td th:text="${rodic.jmeno}"></td>
+                <td th:text="${rodic.email}"></td>
+                <td th:text="${rodic.telefon}"></td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a th:href="@{/}" class="button">Zpět na seznam tříd</a>
+    </div>
+</div>
+</body>
+</html>
