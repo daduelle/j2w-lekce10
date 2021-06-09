@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class SkolaService {
 
     // metoda vrací seznam všech tříd ve škole
     public Page<Trida> findAll() {
-        final Pageable pageable = PageRequest.of(0, Math.toIntExact(tridaRepository.count()));
+        final Pageable pageable = PageRequest.of(0, Math.toIntExact(tridaRepository.count()), Sort.by("nazev"));
         return tridaRepository.findAll(pageable);
     }
 
