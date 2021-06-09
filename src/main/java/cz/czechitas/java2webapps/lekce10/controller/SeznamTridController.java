@@ -20,6 +20,6 @@ public class SeznamTridController {
     @GetMapping("/")
     public ModelAndView seznamTrid(@PageableDefault(sort = {"nazev"}) Pageable pageable) {
         return new ModelAndView("seznamTrid")
-                .addObject("trida", skolaService.findAll(pageable));
+                .addObject("trida", skolaService.findAll());
     }
 }

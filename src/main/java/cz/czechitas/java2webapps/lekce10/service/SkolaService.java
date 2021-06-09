@@ -10,6 +10,7 @@ import cz.czechitas.java2webapps.lekce10.repository.TridaRepository;
 import cz.czechitas.java2webapps.lekce10.repository.UcitelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +36,11 @@ public class SkolaService {
     }
 
     // metoda vrací seznam všech tříd ve škole
-    public Page<Trida> findAll(Pageable pageable) {
-
+    public Page<Trida> findAll() {
+        final Pageable pageable = PageRequest.of(0, Math.toIntExact(tridaRepository.count()));
         return tridaRepository.findAll(pageable);
     }
+
 
     // metoda vrací (vybranou) jednu třídu dle zadaného názvu
     public Trida jednaTrida(String nazev) {
@@ -58,8 +60,8 @@ public class SkolaService {
     }
 
     // metoda vrací detaily rodiče vybraného studenta
-    public List<Rodic> rodiceStudenta (Integer id) {
-        return rodicRepository.findByDetiId(id);
+    public List<Rodic> rodiceStudenta (Integer id, Pageable pageable) {
+        return rodicRepository.findByDetiId(id, pageable);
     }
 
     // metoda vrací údaje o učiteli dle vybrané třídy
